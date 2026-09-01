@@ -1,0 +1,11 @@
+rescate: problemas para hacerse de los fondos una vez que se concreta una venta de activos o rescate de fondos
+rendimiento: hace referencia a los resultados de la inversion, pueden referirse a tasas, ganancias
+disponibilidad para operar
+comisiones: se refiere a los gastos asociados a la operatoria concreta de inversion, cobros que se registran en la cuenta por la gestion, posiblemente no esperados o muy elevados
+horario de operatoria: los clientes suelen mencionar la hora en la que pueden realizar las operaciones, comentan a veces que otros bancos o entidades les permiten un horario mas extendido
+asistencia: hacen referencia a la necesidad de contar con un servicio de soporte ya sea bot o persona al teléfono/mail que les permita responder dudas concretas al momento de operar o presentarse algun inconveniente en concreto
+cotizacion: los clientes hacen referencia al tipo de cambio, el valor del dolar u otras monedas
+alternativas de productos: los clientes pueden indicar que no encuentran una variedad suficiente de fondos u otras opciones de inversion que satisfagan sus necesidades
+visualizacion de informacion: los clientes reclaman que no logran ver de forma correcta o sencilla movimientos, tenencias, detalle de operaciones, desgloses de cargos, evolucion a lo largo del tiempo, rendimientos resumidos y suelen tambien mencionar otros brokers o bancos donde si lo visualizan de manera más clara
+funcionamiento: hace referencia a problemas con la performance de la web desde la que se realizan las operaciones, errores en la navegacion de las pantallas, en las opciones o el menu disponible que les impide concretar la operatoria que desean realizar
+restricciones cambiarias: se refiere a mensajes sobre limites de operatoria mensual en moneda extranjera debido a regulaciones normativas
