@@ -1,0 +1,20 @@
+[logging]
+mode = "file"                                                                              # Modo de registro: "file" para archivo, "console" para consola, "database" para base de datos
+filename = "API001.log"                                                                    # Nombre del archivo de log
+format = "%(asctime)s [%(levelname)s] (%(name)s) (%(filename)s:%(lineno)d) %(message)s"    # Formato de los logs (desarrollo / test)
+encoding = "utf-8"                                                                         # Codificación del archivo de log
+filemode = "a"                                                                             # Modo de apertura del archivo de log ('a' para añadir, 'w' para sobrescribir)
+level = "DEBUG"                                                                            # Nivel mínimo a registrar: DEBUG, INFO, WARNING, ERROR, CRITICAL
+database_url = "sqlite:///./{LOGGING_DATABASE_NAME}.db"                                                        # URL de la base de datos para el registro en caso de usar "database" como modo de registro
+# database_url = "mysql+mysqlconnector://{LOGGING_DATABASE_USER}:{LOGGING_DATABASE_PASSWORD}@{LOGGING_DATABASE_HOST}:{LOGGING_DATABASE_PORT}/{LOGGING_DATABASE_NAME}"   # URL de la base de datos para el registro en caso de usar "database" como modo de registro
+# database_url = "postgresql+psycopg2://{LOGGING_DATABASE_USER}:{LOGGING_DATABASE_PASSWORD}@{LOGGING_DATABASE_HOST}:{LOGGING_DATABASE_PORT}/{LOGGING_DATABASE_NAME}"    # URL de la base de datos para el registro en caso de usar "database" como modo de registro
+database_table = "log_api001"                                                              # Nombre de la tabla de la base de datos para el registro en caso de usar "database" como modo de registro
+
+[model]
+name = "paraphrase-multilingual-MiniLM-L12-v2"
+# name = "all-MiniLM-L6-v2"
+
+[inputs]
+expresiones_a_descartar = "expresiones_a_descartar.txt"
+frases_de_referencia = "frases_de_referencia.txt"
+opiniones = "opiniones.txt"

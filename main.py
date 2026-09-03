@@ -1,3 +1,4 @@
+from helpers.config import settings
 from helpers.decorators import medir_tiempo_ms
 from helpers.file_functions import cargar_datos_desde_txt
 from helpers.ia import get_model_device, model_load, model_encode, model_similarity
@@ -6,7 +7,7 @@ from helpers.text_functions import limpiar_texto
 
 
 DEBUG = False
-MODELO = 'paraphrase-multilingual-MiniLM-L12-v2'  # Modelo preentrenado para obtener embeddings de oraciones
+MODELO = settings.MODEL_NAME  # Modelo preentrenado para obtener embeddings de oraciones
          # Otros modelos: 'all-MiniLM-L6-v2'
 
 
@@ -23,7 +24,7 @@ def main():
     # Carga de expresiones a descartar
     print("\nLoading expressions to discard...")
     logger.info(f"Loading expressions to discard...")
-    expresiones_a_descartar = cargar_datos_desde_txt('expresiones_a_descartar.txt')
+    expresiones_a_descartar = cargar_datos_desde_txt(settings.INPUTS_EXPRESIONES_A_DESCARTAR)
     expresiones_a_descartar.append("")
     logger.info(f"Loaded {len(expresiones_a_descartar)} expressions to discard.")
     print(f"Loaded {len(expresiones_a_descartar)} expressions to discard.")
@@ -36,7 +37,7 @@ def main():
     # Carga de frases de referencia
     print("\nLoading reference sentences...")
     logger.info(f"Loading reference sentences...")
-    frases_de_referencia = cargar_datos_desde_txt('frases_de_referencia.txt')
+    frases_de_referencia = cargar_datos_desde_txt(settings.INPUTS_FRASES_DE_REFERENCIA)
     logger.info(f"Loaded {len(frases_de_referencia)} reference sentences.")
     print(f"Loaded {len(frases_de_referencia)} reference sentences.")
     if DEBUG:
@@ -48,7 +49,7 @@ def main():
     # Carga de opiniones
     print("\nLoading opinions...")
     logger.info(f"Loading opinions...")
-    opiniones = cargar_datos_desde_txt('opiniones.txt')
+    opiniones = cargar_datos_desde_txt(settings.INPUTS_OPINIONES)
     logger.info(f"Loaded {len(opiniones)} opinions.")
     print(f"Loaded {len(opiniones)} opinions.")
     if DEBUG:
