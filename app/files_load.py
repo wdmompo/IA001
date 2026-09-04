@@ -1,8 +1,7 @@
 from helpers.config import settings
 from helpers.decorators import medir_tiempo_ms
 from helpers.file_functions import cargar_datos_desde_txt
-from helpers.logger import get_logger
-
+from logger import get_logger
 
 logger = get_logger(__name__)
 

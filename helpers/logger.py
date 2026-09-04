@@ -12,6 +12,13 @@ def setup_logging():
         level=getattr(logging, str(settings.LOGGING_LEVEL).upper()),
     )
 
+
+def get_logger(name=None):
+    return logging.getLogger(name)
+
+
+
+
     # logger = logging.getLogger(__name__)
     # # logging.StreamHandler()       # Consola
     # # logging.FileHandler("app.log") # Archivo
@@ -41,7 +48,3 @@ def setup_logging():
     #     # )
     #     # db_handler.setLevel(getattr(logging, str(settings.LOGGING_LEVEL).upper()))
     #     # logger.addHandler(db_handler)
-
-
-def get_logger(name=None):
-    return logging.getLogger(name)

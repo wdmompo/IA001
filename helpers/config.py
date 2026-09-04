@@ -59,26 +59,29 @@ def convert_text(text: str) -> str:
 
 
 class Settings(BaseSettings):
-    LOGGING_MODE: str                           # config.toml
-    LOGGING_FILENAME: str                       # config.toml
-    LOGGING_FORMAT: str                         # config.toml
-    LOGGING_ENCODING: str                       # config.toml
-    LOGGING_FILEMODE: str                       # config.toml
-    LOGGING_LEVEL: str                          # config.toml
-    LOGGING_DATABASE_URL: str                   # config.toml
-    LOGGING_DATABASE_TABLE: str                 # config.toml
+    LOGGING_MODE: str = "file"                                  # config.toml
+    LOGGING_FILENAME: str = "./logs/AnalizadorDeOpiniones.log"  # config.toml
+    LOGGING_FORMAT_TYPE: str = "standard"                       # config.toml
+    LOGGING_FORMAT: str = "%(asctime)s [%(levelname)s] (%(name)s) (%(filename)s:%(lineno)d) %(message)s"  # config.toml
+    LOGGING_ENCODING: str = "utf-8"                             # config.toml
+    LOGGING_FILEMODE: str = "a"                                 # config.toml
+    LOGGING_LEVEL: str = "INFO"                                 # config.toml
+    LOGGING_DATABASE_URL: str                                   # config.toml
+    LOGGING_DATABASE_TABLE: str                                 # config.toml
+    LOGGING_MAX_BYTES: int = 10485760                           # config.toml
+    LOGGING_BACKUP_COUNT: int = 10                              # config.toml
 
-    MODEL_NAME: str                             # config.toml
+    MODEL_NAME: str                                             # config.toml
 
-    INPUTS_EXPRESIONES_A_DESCARTAR: str         # config.toml
-    INPUTS_FRASES_DE_REFERENCIA: str            # config.toml
-    INPUTS_OPINIONES: str                       # config.toml
+    INPUTS_EXPRESIONES_A_DESCARTAR: str                         # config.toml
+    INPUTS_FRASES_DE_REFERENCIA: str                            # config.toml
+    INPUTS_OPINIONES: str                                       # config.toml
 
-    LOGGING_DATABASE_USER: str = "user"         # .ENV
-    LOGGING_DATABASE_PASSWORD: str = "password" # .ENV
-    LOGGING_DATABASE_HOST: str = "host"         # .ENV
-    LOGGING_DATABASE_PORT: str = "port"         # .ENV
-    LOGGING_DATABASE_NAME: str = "name"         # .ENV
+    LOGGING_DATABASE_USER: str = "user"                         # .ENV
+    LOGGING_DATABASE_PASSWORD: str = "password"                 # .ENV
+    LOGGING_DATABASE_HOST: str = "host"                         # .ENV
+    LOGGING_DATABASE_PORT: str = "port"                         # .ENV
+    LOGGING_DATABASE_NAME: str = "name"                         # .ENV
 
     @property
     def safe_db_url(self):
@@ -119,6 +122,7 @@ class Settings(BaseSettings):
         return cls(
             LOGGING_MODE=logging_config.get("mode", "file"),
             LOGGING_FILENAME=convert_text(logging_config.get("filename", "AnalizadorDeOpiniones.log")),
+            LOGGING_FORMAT_TYPE=logging_config.get("format_type", "standard"),
             LOGGING_FORMAT=logging_config.get(
                 "format",
                 "%(asctime)s [%(levelname)s] (%(name)s) (%(filename)s:%(lineno)d) %(message)s",
@@ -128,6 +132,8 @@ class Settings(BaseSettings):
             LOGGING_LEVEL=logging_config.get("level", "DEBUG"),
             LOGGING_DATABASE_URL=logging_config.get("database_url", "sqlite:///./{LOGGING_DATABASE_NAME}.db"),
             LOGGING_DATABASE_TABLE=logging_config.get("database_table", "log_analizador_de_opiniones"),
+            LOGGING_MAX_BYTES=logging_config.get("max_bytes", 10485760),
+            LOGGING_BACKUP_COUNT=logging_config.get("backup_count", 10),
 
             MODEL_NAME=model_config.get("name", "default-model"),
 
