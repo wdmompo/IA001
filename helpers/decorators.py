@@ -14,7 +14,5 @@ def medir_tiempo_ms(func):
         resultado = func(*args, **kwargs)
         duracion_ms = (time.perf_counter() - inicio) * 1000
         logger.info(f"Proccess Time: ({func.__name__}) {duracion_ms:.2f} ms")
-        # if DEBUG:
-        #     print(f"Proccess Time: ({func.__name__}) {duracion_ms:.2f} ms")
         return resultado
     return wrapper

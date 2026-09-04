@@ -1,6 +1,8 @@
+from datetime import datetime
 from dotenv import load_dotenv
 import os
 from pathlib import Path
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 import re
 import tomllib
@@ -16,6 +18,7 @@ APP_ENV = os.getenv("APP_ENV", "DEV").upper()
 # elegir archivo .env dinámicamente
 env_file = Path(f".env.{APP_ENV.lower()}") if Path(f".env.{APP_ENV.lower()}").exists() else Path(".env")
 # print(f"Cargando variables de entorno desde: {env_file}")
+
 
 # @medir_tiempo_ms
 def load_config_from_toml() -> Dict[str, Any]:
@@ -35,6 +38,25 @@ def load_config_from_toml() -> Dict[str, Any]:
         config_data = tomllib.load(f)
     
     return config_data
+
+
+def convert_text(text: str) -> str:
+    """
+    Convierte el texto a un formato seguro para usar en nombres de archivos.
+
+    Args:
+        text (str): El texto a convertir.
+
+    Returns:
+        str: El texto convertido.
+    """
+    # Reemplazar variables en el texto
+    safe_text = text
+    safe_text = safe_text.replace("{DATE}", datetime.now().strftime("%Y%m%d"))             # Reemplaza {DATE} con la fecha actual
+    safe_text = safe_text.replace("{TIME}", datetime.now().strftime("%H%M%S"))             # Reemplaza {TIME} con la hora actual
+    safe_text = safe_text.replace("{DATETIME}", datetime.now().strftime("%Y%m%d_%H%M%S"))  # Reemplaza {DATETIME} con la fecha y hora actual
+    return safe_text
+
 
 class Settings(BaseSettings):
     LOGGING_MODE: str                           # config.toml
@@ -66,6 +88,19 @@ class Settings(BaseSettings):
             self.LOGGING_DATABASE_URL,
         )
 
+    @property
+    def database_url_resolved(self):
+        """
+        Devuelve la URL de la base de datos con las variables de entorno reemplazadas.
+        """
+        safe_text = self.LOGGING_DATABASE_URL
+        safe_text = convert_text(safe_text)
+        variables = re.findall(r"\{([A-Z_]+)\}", safe_text)
+        variables_valores = {variable: getattr(self, variable) for variable in variables}
+        for var in variables_valores:
+            safe_text = safe_text.replace(f"{{{var}}}", variables_valores[var])
+        return safe_text
+    
     # Configuración de Pydantic para cargar variables de entorno desde un archivo .env
     model_config = SettingsConfigDict(
         env_file=env_file if env_file.exists() else None,
@@ -83,7 +118,7 @@ class Settings(BaseSettings):
 
         return cls(
             LOGGING_MODE=logging_config.get("mode", "file"),
-            LOGGING_FILENAME=logging_config.get("filename", "API001.log"),
+            LOGGING_FILENAME=convert_text(logging_config.get("filename", "AnalizadorDeOpiniones.log")),
             LOGGING_FORMAT=logging_config.get(
                 "format",
                 "%(asctime)s [%(levelname)s] (%(name)s) (%(filename)s:%(lineno)d) %(message)s",
@@ -92,7 +127,7 @@ class Settings(BaseSettings):
             LOGGING_FILEMODE=logging_config.get("filemode", "a"),
             LOGGING_LEVEL=logging_config.get("level", "DEBUG"),
             LOGGING_DATABASE_URL=logging_config.get("database_url", "sqlite:///./{LOGGING_DATABASE_NAME}.db"),
-            LOGGING_DATABASE_TABLE=logging_config.get("database_table", "log_api001"),
+            LOGGING_DATABASE_TABLE=logging_config.get("database_table", "log_analizador_de_opiniones"),
 
             MODEL_NAME=model_config.get("name", "default-model"),
 

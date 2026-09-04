@@ -1,3 +1,6 @@
+# import logging
+
+from app.files_load import files_load
 from helpers.config import settings
 from helpers.decorators import medir_tiempo_ms
 from helpers.file_functions import cargar_datos_desde_txt
@@ -15,47 +18,50 @@ MODELO = settings.MODEL_NAME  # Modelo preentrenado para obtener embeddings de o
 def main():
     setup_logging()
     logger = get_logger(__name__)
+    # logger = logging.getLogger(__name__)
 
 
     print(f"Starting the script with model: {MODELO}")
     logger.info(f"Starting the script with model: {MODELO}")
 
 
-    # Carga de expresiones a descartar
-    print("\nLoading expressions to discard...")
-    logger.info(f"Loading expressions to discard...")
-    expresiones_a_descartar = cargar_datos_desde_txt(settings.INPUTS_EXPRESIONES_A_DESCARTAR)
-    expresiones_a_descartar.append("")
-    logger.info(f"Loaded {len(expresiones_a_descartar)} expressions to discard.")
-    print(f"Loaded {len(expresiones_a_descartar)} expressions to discard.")
-    if DEBUG:
-        print(f"Expressions to discard:")
-        for i, expresion in enumerate(expresiones_a_descartar):
-            print(f"Expression {i+1}: {expresion}")
+    expresiones_a_descartar, frases_de_referencia, opiniones = files_load()
+
+    # # Carga de expresiones a descartar
+    # print("\nLoading expressions to discard...")
+    # logger.info(f"Loading expressions to discard...")
+    # expresiones_a_descartar = cargar_datos_desde_txt(settings.INPUTS_EXPRESIONES_A_DESCARTAR)
+    # expresiones_a_descartar.append("")
+    # logger.info(f"Loaded {len(expresiones_a_descartar)} expressions to discard.")
+    # print(f"Loaded {len(expresiones_a_descartar)} expressions to discard.")
+    # if DEBUG:
+    #     print(f"Expressions to discard:")
+    #     for i, expresion in enumerate(expresiones_a_descartar):
+    #         print(f"Expression {i+1}: {expresion}")
 
 
-    # Carga de frases de referencia
-    print("\nLoading reference sentences...")
-    logger.info(f"Loading reference sentences...")
-    frases_de_referencia = cargar_datos_desde_txt(settings.INPUTS_FRASES_DE_REFERENCIA)
-    logger.info(f"Loaded {len(frases_de_referencia)} reference sentences.")
-    print(f"Loaded {len(frases_de_referencia)} reference sentences.")
-    if DEBUG:
-        print(f"Reference sentences:")
-        for i, sentence in enumerate(frases_de_referencia):
-            print(f"Sentence {i+1}: {sentence}")
+    # # Carga de frases de referencia
+    # print("\nLoading reference sentences...")
+    # logger.info(f"Loading reference sentences...")
+    # frases_de_referencia = cargar_datos_desde_txt(settings.INPUTS_FRASES_DE_REFERENCIA)
+    # logger.info(f"Loaded {len(frases_de_referencia)} reference sentences.")
+    # print(f"Loaded {len(frases_de_referencia)} reference sentences.")
+    # if DEBUG:
+    #     print(f"Reference sentences:")
+    #     for i, sentence in enumerate(frases_de_referencia):
+    #         print(f"Sentence {i+1}: {sentence}")
 
 
-    # Carga de opiniones
-    print("\nLoading opinions...")
-    logger.info(f"Loading opinions...")
-    opiniones = cargar_datos_desde_txt(settings.INPUTS_OPINIONES)
-    logger.info(f"Loaded {len(opiniones)} opinions.")
-    print(f"Loaded {len(opiniones)} opinions.")
-    if DEBUG:
-        print(f"Opinions:")
-        for i, opinion in enumerate(opiniones):
-            print(f"Opinion {i+1}: {opinion}")
+    # # Carga de opiniones
+    # print("\nLoading opinions...")
+    # logger.info(f"Loading opinions...")
+    # opiniones = cargar_datos_desde_txt(settings.INPUTS_OPINIONES)
+    # logger.info(f"Loaded {len(opiniones)} opinions.")
+    # print(f"Loaded {len(opiniones)} opinions.")
+    # if DEBUG:
+    #     print(f"Opinions:")
+    #     for i, opinion in enumerate(opiniones):
+    #         print(f"Opinion {i+1}: {opinion}")
 
 
     # Limpiar opiniones
