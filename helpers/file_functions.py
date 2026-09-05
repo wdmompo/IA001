@@ -1,7 +1,7 @@
 from os import path
 
 from helpers.decorators import medir_tiempo_ms
-from helpers.logger import get_logger
+from logger import get_logger
 
 
 logger = get_logger(__name__)
