@@ -1,3 +1,4 @@
+from sentence_transformers import SentenceTransformer
 import torch
 
 from helpers.decorators import medir_tiempo_ms
@@ -9,7 +10,25 @@ logger = get_logger(__name__)
 
 
 @medir_tiempo_ms
-def calculate_embeddings(model, frases_de_referencia, opiniones, device) -> tuple[torch.Tensor, torch.Tensor]:
+def calculate_embeddings(
+    model: SentenceTransformer, 
+    frases_de_referencia: list[str], 
+    opiniones: list[str], 
+    device: str
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+
+    """
+    Calcula los embeddings para las frases de referencia y las opiniones utilizando el modelo proporcionado.
+    
+    Args:
+        model (SentenceTransformer): El modelo de embeddings.
+        frases_de_referencia (list[str]): Lista de frases de referencia.
+        opiniones (list[str]): Lista de opiniones.
+        device (str): Dispositivo en el que realizar la codificación.
+
+    Returns:
+        tuple[torch.Tensor, torch.Tensor]: Tupla con los embeddings de las frases de referencia y las opiniones.
+    """
 
     # Codificar oraciones para obtener sus embeddings
     print(f"\nEncoding sentences (frases de referencia)...")
