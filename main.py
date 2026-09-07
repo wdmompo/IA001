@@ -5,7 +5,7 @@ from app.files_load import files_load
 from app.model_load import model_load
 from helpers.config import settings
 from helpers.decorators import medir_tiempo_ms
-from helpers.ia import get_model_device #, model_similarity
+from helpers.ia import get_model_device
 from logger import get_logger
 
 
@@ -21,7 +21,7 @@ def main():
 
     # Proceso general
     expresiones_a_descartar, frases_de_referencia, opiniones = files_load()
-    opiniones = opinions_cleaning(opiniones)
+    opiniones = opinions_cleaning(opiniones, expresiones_a_descartar)
     model = model_load(settings.MODEL_NAME, device)
     embeddings_frases_de_referencia, embeddings_opiniones = calculate_embeddings(model, frases_de_referencia, opiniones, device)
     similarities = calculate_similarities(model, embeddings_frases_de_referencia, embeddings_opiniones)

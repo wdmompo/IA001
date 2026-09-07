@@ -4,18 +4,25 @@ filename = "./logs/AnalizadorDeOpiniones-{DATE}.log"                            
 format_type = "standard"                                                                   # Tipo de formato de los logs: "standard" para un formato estándar, "json" para un formato JSON
 format = "%(asctime)s [%(levelname)s] (%(name)s) (%(filename)s:%(lineno)d) %(message)s"    # Formato de los logs (desarrollo / test)
 encoding = "utf-8"                                                                         # Codificación del archivo de log
-filemode = "w"                                                                             # Modo de apertura del archivo de log ('a' para añadir, 'w' para sobrescribir)
+filemode = "a"                                                                             # Modo de apertura del archivo de log ('a' para añadir, 'w' para sobrescribir)
 level = "INFO"                                                                             # Nivel mínimo a registrar: DEBUG, INFO, WARNING, ERROR, CRITICAL
 database_url = "sqlite:///./{LOGGING_DATABASE_NAME}.db"                                    # URL de la base de datos para el registro en caso de usar "database" como modo de registro
 # database_url = "mysql+mysqlconnector://{LOGGING_DATABASE_USER}:{LOGGING_DATABASE_PASSWORD}@{LOGGING_DATABASE_HOST}:{LOGGING_DATABASE_PORT}/{LOGGING_DATABASE_NAME}"   # URL de la base de datos para el registro en caso de usar "database" como modo de registro
 # database_url = "postgresql+psycopg2://{LOGGING_DATABASE_USER}:{LOGGING_DATABASE_PASSWORD}@{LOGGING_DATABASE_HOST}:{LOGGING_DATABASE_PORT}/{LOGGING_DATABASE_NAME}"    # URL de la base de datos para el registro en caso de usar "database" como modo de registro
 database_table = "log_analizador_de_opiniones"                                             # Nombre de la tabla de la base de datos para el registro en caso de usar "database" como modo de registro
-max_bytes = 10485760
-backup_count = 10
+max_bytes = 10485760                                                                       # Tamaño máximo del archivo de log en bytes antes de rotar
+backup_count = 10                                                                          # Número de archivos de log antiguos a mantener después de la rotación
 
 [model]
 name = "paraphrase-multilingual-MiniLM-L12-v2"                                             # Modelo de embeddings a utilizar. Ejemplos: "paraphrase-multilingual-MiniLM-L12-v2", "all-MiniLM-L6-v2" 
 # name = "all-MiniLM-L6-v2"                                                                  # Modelo de embeddings a utilizar. Ejemplos: "paraphrase-multilingual-MiniLM-L12-v2", "all-MiniLM-L6-v2" 
+
+[text_clean]
+remove_accents = true                                                                      # Indica si se deben eliminar los acentos de los textos
+remove_enie = true                                                                         # Indica si se deben eliminar las eñes de los textos
+remove_special_characters = true                                                           # Indica si se deben eliminar los caracteres especiales de los textos
+minimum_length = 4                                                                         # Longitud mínima de los textos a procesar
+minimum_word_count = 4                                                                     # Número mínimo de palabras en los textos a procesar
 
 [inputs]
 expresiones_a_descartar = "expresiones_a_descartar.txt"                                    # Archivo de texto que contiene expresiones a descartar en el procesamiento de texto

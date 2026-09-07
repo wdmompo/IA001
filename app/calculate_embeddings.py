@@ -34,7 +34,7 @@ def calculate_embeddings(
     print(f"\nEncoding sentences (frases de referencia)...")
     embeddings_frases_de_referencia = model_encode(model, frases_de_referencia, device)
     logger.info(f"Sentences encoded.", extra={'model.device': model.device})
-    # if DEBUG:
+    logger.debug(f"Embeddings for frases de referencia calculated.", extra={'embeddings': embeddings_frases_de_referencia})
     #     print("Embeddings:")
     #     for i, embedding in enumerate(embeddings_frases_de_referencia):
     #         print(f"Sentence {i+1} embedding: {embedding[:5]}...")  # Mostrar solo los primeros 5 valores del embedding
@@ -44,7 +44,7 @@ def calculate_embeddings(
     print("\nEncoding sentences (opiniones)...")
     embeddings_opiniones = model_encode(model, opiniones, device)
     logger.info(f"Sentences encoded.", extra={'model.device': model.device})
-    # if DEBUG:
+    logger.debug(f"Embeddings for opiniones calculated.", extra={'embeddings': embeddings_opiniones})
     #     print("Embeddings:")
     #     for i, embedding in enumerate(embeddings_opiniones):
     #         print(f"Sentence {i+1} embedding: {embedding[:5]}...")  # Mostrar solo los primeros 5 valores del embedding

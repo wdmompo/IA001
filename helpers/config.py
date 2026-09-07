@@ -73,6 +73,12 @@ class Settings(BaseSettings):
 
     MODEL_NAME: str                                             # config.toml
 
+    TEXT_CLEAN_REMOVE_ACCENTS: bool                             # config.toml
+    TEXT_CLEAN_REMOVE_ENIE: bool                                # config.toml
+    TEXT_CLEAN_REMOVE_SPECIAL_CHARACTERS: bool                  # config.toml
+    TEXT_CLEAN_MINIMUM_LENGTH: int                              # config.toml
+    TEXT_CLEAN_MINIMUM_WORD_COUNT: int                          # config.toml
+
     INPUTS_EXPRESIONES_A_DESCARTAR: str                         # config.toml
     INPUTS_FRASES_DE_REFERENCIA: str                            # config.toml
     INPUTS_OPINIONES: str                                       # config.toml
@@ -117,6 +123,7 @@ class Settings(BaseSettings):
         config_data = load_config_from_toml()
         logging_config = config_data.get("logging", {})
         model_config = config_data.get("model", {})
+        text_clean_config = config_data.get("text_clean", {})
         inputs_config = config_data.get("inputs", {})
 
         return cls(
@@ -136,6 +143,12 @@ class Settings(BaseSettings):
             LOGGING_BACKUP_COUNT=logging_config.get("backup_count", 10),
 
             MODEL_NAME=model_config.get("name", "default-model"),
+
+            TEXT_CLEAN_REMOVE_ACCENTS=text_clean_config.get("remove_accents", True),
+            TEXT_CLEAN_REMOVE_ENIE=text_clean_config.get("remove_enie", True),
+            TEXT_CLEAN_REMOVE_SPECIAL_CHARACTERS=text_clean_config.get("remove_special_characters", True),
+            TEXT_CLEAN_MINIMUM_LENGTH=text_clean_config.get("minimum_length", 4),
+            TEXT_CLEAN_MINIMUM_WORD_COUNT=text_clean_config.get("minimum_word_count", 4),
 
             INPUTS_EXPRESIONES_A_DESCARTAR=inputs_config.get("expresiones_a_descartar", "expresiones_a_descartar.txt"),
             INPUTS_FRASES_DE_REFERENCIA=inputs_config.get("frases_de_referencia", "frases_de_referencia.txt"),
