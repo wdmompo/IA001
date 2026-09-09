@@ -1,3 +1,4 @@
+from rich import print
 from sentence_transformers import SentenceTransformer
 
 from helpers.decorators import medir_tiempo_ms
@@ -27,7 +28,7 @@ def model_load(
     """
 
     # Cargar un modelo preentrenado
-    print(f"\nLoading model {model_name}...")
+    print(f"\n[green]Loading model[/green] [red]{model_name}[/red][green]...[/green]")
     logger.info(f"Loading model...", extra={'model': model_name})
     # Detectar automáticamente el mejor dispositivo disponible
     device = get_model_device()
@@ -36,9 +37,9 @@ def model_load(
         model_st = ml(model_name, device)
     except Exception as e:
         logger.info(f"Error loading model.", extra={'model': model_name, 'error': e})
-        print(f"Error loading model {e}.")
+        print(f"[green]Error loading model[/green] [red]{e}[/red][green].[/green]")
     else:
         logger.info(f"Model loaded successfully.", extra={'model': model_name, 'device': model_st.device})
-        print(f"Model {model_name} loaded successfully in {model_st.device}.")
+        print(f"[green]Model[/green] [red]{model_name}[/red] [green]loaded successfully in[/green] [red]{model_st.device}[/red][green].[/green]")
 
     return model_st

@@ -1,3 +1,4 @@
+from rich import print
 from sentence_transformers import SentenceTransformer
 import torch
 
@@ -28,9 +29,9 @@ def calculate_similarities(
         torch.Tensor: Tensor con las similitudes calculadas.
     """
 
-    print("\nCalculating similarities...")
+    print("\n[green]Calculating similarities...[/green]")
     # 4. Verificar qué métrica matemática utiliza el modelo por defecto
-    print(f"Métrica de comparación interna del modelo: '{model.similarity_fn_name}'")
+    print(f"[green]Métrica de comparación interna del modelo: '[/green][red]{model.similarity_fn_name}[/red][green]'[/green]")
     logger.info(f"Métrica de comparación interna del modelo.", extra={'model.similarity_fn_name': model.similarity_fn_name})
     similarities = model_similarity(model, embeddings_frases_de_referencia, embeddings_opiniones)
     logger.info(f"Similarities calculated.", extra={'model.device': model.device})

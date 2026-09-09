@@ -1,3 +1,5 @@
+from rich import print
+
 from helpers.config import settings
 from helpers.decorators import medir_tiempo_ms
 from helpers.file_functions import cargar_datos_desde_txt
@@ -10,12 +12,12 @@ logger = get_logger(__name__)
 @medir_tiempo_ms
 def files_load() -> tuple[list[str], list[str], list[str]]:
     # Carga de expresiones a descartar
-    print("\nLoading expressions to discard...")
+    print("\n[green]Loading expressions to discard...[/green]")
     logger.info(f"Loading expressions to discard...")
     expresiones_a_descartar = cargar_datos_desde_txt(settings.INPUTS_EXPRESIONES_A_DESCARTAR)
     expresiones_a_descartar.append("")
     logger.info(f"Loaded {len(expresiones_a_descartar)} expressions to discard.")
-    print(f"Loaded {len(expresiones_a_descartar)} expressions to discard.")
+    print(f"[green]Loaded[/green] [red]{len(expresiones_a_descartar)}[/red] [green]expressions to discard.[/green]")
     logger.debug(f"Expressions to discard: {expresiones_a_descartar}")
     # if DEBUG:
     #     print(f"Expressions to discard:")
@@ -24,11 +26,11 @@ def files_load() -> tuple[list[str], list[str], list[str]]:
 
 
     # Carga de frases de referencia
-    print("\nLoading reference sentences...")
+    print("\n[green]Loading reference sentences...[/green]")
     logger.info(f"Loading reference sentences...")
     frases_de_referencia = cargar_datos_desde_txt(settings.INPUTS_FRASES_DE_REFERENCIA)
     logger.info(f"Loaded {len(frases_de_referencia)} reference sentences.")
-    print(f"Loaded {len(frases_de_referencia)} reference sentences.")
+    print(f"[green]Loaded[/green] [red]{len(frases_de_referencia)}[/red] [green]reference sentences.[/green]")
     logger.debug(f"Reference sentences: {frases_de_referencia}")
     # if DEBUG:
     #     print(f"Reference sentences:")
@@ -37,11 +39,11 @@ def files_load() -> tuple[list[str], list[str], list[str]]:
 
 
     # Carga de opiniones
-    print("\nLoading opinions...")
+    print("\n[green]Loading opinions...[/green]")
     logger.info(f"Loading opinions...")
     opiniones = cargar_datos_desde_txt(settings.INPUTS_OPINIONES)
     logger.info(f"Loaded {len(opiniones)} opinions.")
-    print(f"Loaded {len(opiniones)} opinions.")
+    print(f"[green]Loaded[/green] [red]{len(opiniones)}[/red] [green]opinions.[/green]")
     logger.debug(f"Opinions: {opiniones}")
     # if DEBUG:
     #     print(f"Opinions:")

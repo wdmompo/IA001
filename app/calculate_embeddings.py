@@ -1,3 +1,4 @@
+from rich import print
 from sentence_transformers import SentenceTransformer
 import torch
 
@@ -31,7 +32,7 @@ def calculate_embeddings(
     """
 
     # Codificar oraciones para obtener sus embeddings
-    print(f"\nEncoding sentences (frases de referencia)...")
+    print(f"\n[green]Encoding sentences (frases de referencia)...[/green]")
     embeddings_frases_de_referencia = model_encode(model, frases_de_referencia, device)
     logger.info(f"Sentences encoded.", extra={'model.device': model.device})
     logger.debug(f"Embeddings for frases de referencia calculated.", extra={'embeddings': embeddings_frases_de_referencia})
@@ -41,7 +42,7 @@ def calculate_embeddings(
 
 
     # Codificar oraciones para obtener sus embeddings
-    print("\nEncoding sentences (opiniones)...")
+    print("\n[green]Encoding sentences (opiniones)...[/green]")
     embeddings_opiniones = model_encode(model, opiniones, device)
     logger.info(f"Sentences encoded.", extra={'model.device': model.device})
     logger.debug(f"Embeddings for opiniones calculated.", extra={'embeddings': embeddings_opiniones})
