@@ -17,7 +17,7 @@ def files_load() -> tuple[list[str], list[str], list[str]]:
     expresiones_a_descartar = cargar_datos_desde_txt(settings.INPUTS_EXPRESIONES_A_DESCARTAR)
     expresiones_a_descartar.append("")
     logger.info(f"Loaded {len(expresiones_a_descartar)} expressions to discard.")
-    print(f"[green]Loaded[/green] [red]{len(expresiones_a_descartar)}[/red] [green]expressions to discard.[/green]")
+    print(f"[green]Loaded [red]{len(expresiones_a_descartar)}[/red] expressions to discard.[/green]")
     logger.debug(f"Expressions to discard: {expresiones_a_descartar}")
     # if DEBUG:
     #     print(f"Expressions to discard:")
@@ -30,7 +30,7 @@ def files_load() -> tuple[list[str], list[str], list[str]]:
     logger.info(f"Loading reference sentences...")
     frases_de_referencia = cargar_datos_desde_txt(settings.INPUTS_FRASES_DE_REFERENCIA)
     logger.info(f"Loaded {len(frases_de_referencia)} reference sentences.")
-    print(f"[green]Loaded[/green] [red]{len(frases_de_referencia)}[/red] [green]reference sentences.[/green]")
+    print(f"[green]Loaded [red]{len(frases_de_referencia)}[/red] reference sentences.[/green]")
     logger.debug(f"Reference sentences: {frases_de_referencia}")
     # if DEBUG:
     #     print(f"Reference sentences:")
@@ -43,7 +43,7 @@ def files_load() -> tuple[list[str], list[str], list[str]]:
     logger.info(f"Loading opinions...")
     opiniones = cargar_datos_desde_txt(settings.INPUTS_OPINIONES)
     logger.info(f"Loaded {len(opiniones)} opinions.")
-    print(f"[green]Loaded[/green] [red]{len(opiniones)}[/red] [green]opinions.[/green]")
+    print(f"[green]Loaded [red]{len(opiniones)}[/red] opinions.[/green]")
     logger.debug(f"Opinions: {opiniones}")
     # if DEBUG:
     #     print(f"Opinions:")

@@ -16,7 +16,7 @@ logger = get_logger(__name__)
 
 @medir_tiempo_ms
 def main():
-    print(f"[orange_red1]*****[/orange_red1] [bold blue]Starting the script with model:[/bold blue] [red]{settings.MODEL_NAME}[/red]")
+    print(f"[orange_red1]*****[/orange_red1] [bold blue]Starting the script with model: [red]{settings.MODEL_NAME}[/red].[/bold blue]")
     logger.info(f"Starting the script with model", extra={'model': settings.MODEL_NAME})
 
     device = get_model_device()

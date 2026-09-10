@@ -31,10 +31,11 @@ def calculate_similarities(
 
     print("\n[green]Calculating similarities...[/green]")
     # 4. Verificar qué métrica matemática utiliza el modelo por defecto
-    print(f"[green]Métrica de comparación interna del modelo: '[/green][red]{model.similarity_fn_name}[/red][green]'[/green]")
+    print(f"[green]Métrica de comparación interna del modelo: '[red]{model.similarity_fn_name}[/red]'[/green]")
     logger.info(f"Métrica de comparación interna del modelo.", extra={'model.similarity_fn_name': model.similarity_fn_name})
     similarities = model_similarity(model, embeddings_frases_de_referencia, embeddings_opiniones)
     logger.info(f"Similarities calculated.", extra={'model.device': model.device})
+    print(f"[green]Similarities calculated. Total: [red]{similarities.shape[0]} - {similarities.shape[1]}[/red].[/green]")
     # if DEBUG:
     #     print("Similarities:")
     #     for i in range(len(similarities)):

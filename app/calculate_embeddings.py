@@ -32,20 +32,22 @@ def calculate_embeddings(
     """
 
     # Codificar oraciones para obtener sus embeddings
-    print(f"\n[green]Encoding sentences (frases de referencia)...[/green]")
+    print(f"\n[green]Encoding sentences ([red]frases de referencia[/red])...[/green]")
     embeddings_frases_de_referencia = model_encode(model, frases_de_referencia, device)
     logger.info(f"Sentences encoded.", extra={'model.device': model.device})
-    logger.debug(f"Embeddings for frases de referencia calculated.", extra={'embeddings': embeddings_frases_de_referencia})
+    logger.debug(f"Embeddings for frases de referencia calculated.", extra={'embeddings': embeddings_frases_de_referencia, 'total': embeddings_frases_de_referencia.shape[0]})
+    print(f"[green]Embeddings for [red]frases de referencia[/red] calculated. Total: [red]{embeddings_frases_de_referencia.shape[0]} - {embeddings_frases_de_referencia.shape[1]}[/red].[/green]")
     #     print("Embeddings:")
     #     for i, embedding in enumerate(embeddings_frases_de_referencia):
     #         print(f"Sentence {i+1} embedding: {embedding[:5]}...")  # Mostrar solo los primeros 5 valores del embedding
 
 
     # Codificar oraciones para obtener sus embeddings
-    print("\n[green]Encoding sentences (opiniones)...[/green]")
+    print("\n[green]Encoding sentences ([red]opiniones[/red])...[/green]")
     embeddings_opiniones = model_encode(model, opiniones, device)
     logger.info(f"Sentences encoded.", extra={'model.device': model.device})
-    logger.debug(f"Embeddings for opiniones calculated.", extra={'embeddings': embeddings_opiniones})
+    logger.debug(f"Embeddings for opiniones calculated.", extra={'embeddings': embeddings_opiniones, 'total': embeddings_opiniones.shape[0]})
+    print(f"[green]Embeddings for [red]opiniones[/red] calculated. Total: [red]{embeddings_opiniones.shape[0]} - {embeddings_opiniones.shape[1]}[/red].[/green]")
     #     print("Embeddings:")
     #     for i, embedding in enumerate(embeddings_opiniones):
     #         print(f"Sentence {i+1} embedding: {embedding[:5]}...")  # Mostrar solo los primeros 5 valores del embedding
