@@ -1,5 +1,5 @@
 [logging]
-mode = "file"                                                                      # Modo de registro: "file" para archivo, "console" para consola, "database" para base de datos, puede ser una lista separada por comas para múltiples modos, por ejemplo: "file,console"
+mode = "file"                                                                              # Modo de registro: "file" para archivo, "console" para consola, "database" para base de datos, puede ser una lista separada por comas para múltiples modos, por ejemplo: "file,console"
 filename = "./logs/AnalizadorDeOpiniones-{DATE}.log"                                       # Nombre del archivo de log
 format_type = "standard"                                                                   # Tipo de formato de los logs: "standard" para un formato estándar, "json" para un formato JSON
 format = "%(asctime)s [%(levelname)s] (%(name)s) (%(filename)s:%(lineno)d) %(message)s"    # Formato de los logs (desarrollo / test)

@@ -1,6 +1,8 @@
 import logging
-from pathlib import Path
 from logging.handlers import RotatingFileHandler
+from pathlib import Path
+from rich.logging import RichHandler
+
 from helpers.config import settings
 from .formatters import JsonFormatter, get_text_formatter
 
@@ -25,9 +27,18 @@ class LoggerFactory:
             sh.setFormatter(formatter)
             root_logger.addHandler(sh)
 
+        if "console_rich" in log_output:
+            rh = RichHandler(
+                rich_tracebacks=True,
+                markup=True)
+            rh.setFormatter(formatter)
+            root_logger.addHandler(rh)
+
         if "file" in log_output:
             path = Path(settings.LOGGING_FILENAME)
-            path.parent.mkdir(parents=True, exist_ok=True)
+            path.parent.mkdir(
+                parents=True,
+                exist_ok=True)
             fh = RotatingFileHandler(
                 filename=path, 
                 mode=settings.LOGGING_FILEMODE, 
