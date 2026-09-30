@@ -5,8 +5,8 @@ from app.calculate_similarities import calculate_similarities
 from app.data_cleaning import opinions_cleaning
 from app.files_load import files_load
 from app.model_load import model_load
-from helpers.config import settings
-from helpers.decorators import medir_tiempo_ms
+from config import settings
+from decorators import process_time
 from helpers.ia import get_model_device
 from logger import get_logger
 
@@ -14,7 +14,7 @@ from logger import get_logger
 logger = get_logger(__name__)
 
 
-@medir_tiempo_ms
+@process_time(__name__)
 def main():
     print(f"[orange_red1]*****[/orange_red1] [bold blue]Starting the script with model: [red]{settings.MODEL_NAME}[/red].[/bold blue]")
     logger.info(f"Starting the script with model", extra={'model': settings.MODEL_NAME})

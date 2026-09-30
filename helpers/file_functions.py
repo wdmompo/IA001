@@ -1,13 +1,13 @@
 from os import path
 
-from helpers.decorators import medir_tiempo_ms
+from decorators import ProcessTime
 from logger import get_logger
 
 
 logger = get_logger(__name__)
 
 
-@medir_tiempo_ms
+@ProcessTime(__name__)
 def cargar_datos_desde_txt(nombre_archivo: str) -> list:
     try:
         print(f"Loading data from file: {path.join(path.join(path.dirname(path.dirname(__file__)), 'inputs'), nombre_archivo)}")

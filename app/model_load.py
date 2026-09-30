@@ -1,7 +1,7 @@
 from rich import print
 from sentence_transformers import SentenceTransformer
 
-from helpers.decorators import medir_tiempo_ms
+from decorators import ProcessTime
 from helpers.ia import get_model_device
 from helpers.ia import model_load as ml
 from logger import get_logger
@@ -10,7 +10,7 @@ from logger import get_logger
 logger = get_logger(__name__)
 
 
-@medir_tiempo_ms
+@ProcessTime(__name__)
 def model_load(
     model_name: str, 
     device: str

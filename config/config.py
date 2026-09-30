@@ -155,4 +155,4 @@ class Settings(BaseSettings):
             INPUTS_OPINIONES=inputs_config.get("opiniones", "opiniones.txt"),
         )
 
-settings = Settings.load_from_toml()
+# settings = Settings.load_from_toml()

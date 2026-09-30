@@ -2,14 +2,14 @@ from sentence_transformers import SentenceTransformer
 import torch
 import truststore
 
-from helpers.decorators import medir_tiempo_ms
+from decorators import ProcessTime
 from logger import get_logger
 
 
 logger = get_logger(__name__)
 
 
-@medir_tiempo_ms
+@ProcessTime(__name__)
 def get_model_device() -> str:
 
     """
@@ -36,7 +36,7 @@ def get_model_device() -> str:
     return device
 
 
-@medir_tiempo_ms
+@ProcessTime(__name__)
 def model_load(
     model_name_or_path: str, 
     device: str
@@ -61,7 +61,7 @@ def model_load(
     return model
 
 
-@medir_tiempo_ms
+@ProcessTime(__name__)
 def model_encode(
     model: SentenceTransformer, 
     sentences: list, 
@@ -89,7 +89,7 @@ def model_encode(
     )
 
 
-@medir_tiempo_ms
+@ProcessTime(__name__)
 def model_similarity(
     model: SentenceTransformer, 
     embeddings_a: torch.Tensor, 

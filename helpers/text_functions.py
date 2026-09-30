@@ -1,7 +1,7 @@
 import pandas as pd
 import re
 
-from helpers.config import settings
+from config import settings
 
 
 def limpiar_texto(texto) -> str:

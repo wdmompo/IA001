@@ -1,6 +1,6 @@
 from rich import print
 
-from helpers.decorators import medir_tiempo_ms
+from decorators import ProcessTime
 from helpers.text_functions import limpiar_opiniones
 from logger import get_logger
 
@@ -8,7 +8,7 @@ from logger import get_logger
 logger = get_logger(__name__)
 
 
-@medir_tiempo_ms
+@ProcessTime(__name__)
 def opinions_cleaning(opiniones: list[str], expresiones_a_descartar: list[str]) -> list[str]:
     print("\n[green]Cleaning opinions...[/green]")
     logger.info(f"Cleaning opinions...")

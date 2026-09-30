@@ -3,7 +3,7 @@ from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from rich.logging import RichHandler
 
-from helpers.config import settings
+from config import settings
 from .formatters import JsonFormatter, get_text_formatter
 
 class LoggerFactory:

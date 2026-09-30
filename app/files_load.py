@@ -1,7 +1,7 @@
 from rich import print
 
-from helpers.config import settings
-from helpers.decorators import medir_tiempo_ms
+from config import settings
+from decorators import ProcessTime
 from helpers.file_functions import cargar_datos_desde_txt
 from logger import get_logger
 
@@ -9,7 +9,7 @@ from logger import get_logger
 logger = get_logger(__name__)
 
 
-@medir_tiempo_ms
+@ProcessTime(__name__)
 def files_load() -> tuple[list[str], list[str], list[str]]:
     # Carga de expresiones a descartar
     print("\n[green]Loading expressions to discard...[/green]")

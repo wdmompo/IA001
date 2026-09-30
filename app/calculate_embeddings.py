@@ -2,7 +2,7 @@ from rich import print
 from sentence_transformers import SentenceTransformer
 import torch
 
-from helpers.decorators import medir_tiempo_ms
+from decorators import ProcessTime
 from helpers.ia import model_encode
 from logger import get_logger
 
@@ -10,7 +10,7 @@ from logger import get_logger
 logger = get_logger(__name__)
 
 
-@medir_tiempo_ms
+@ProcessTime(__name__)
 def calculate_embeddings(
     model: SentenceTransformer, 
     frases_de_referencia: list[str], 

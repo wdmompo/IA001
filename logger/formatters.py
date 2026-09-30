@@ -1,7 +1,7 @@
 import json
 import logging
 from datetime import datetime
-from helpers.config import settings
+from config import settings
 
 # TEXT_FORMAT = "%(asctime)s | %(levelname)-8s | %(name)s | %(module)s:%(lineno)d | %(message)s"
 TEXT_FORMAT = settings.LOGGING_FORMAT
