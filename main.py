@@ -6,7 +6,7 @@ from app.data_cleaning import opinions_cleaning
 from app.files_load import files_load
 from app.model_load import model_load
 from config import settings
-from decorators import process_time
+from decorators import ProcessTime
 from helpers.ia import get_model_device
 from logger import get_logger
 
@@ -14,7 +14,7 @@ from logger import get_logger
 logger = get_logger(__name__)
 
 
-@process_time(__name__)
+@ProcessTime(__name__)
 def main():
     print(f"[orange_red1]*****[/orange_red1] [bold blue]Starting the script with model: [red]{settings.MODEL_NAME}[/red].[/bold blue]")
     logger.info(f"Starting the script with model", extra={'model': settings.MODEL_NAME})
